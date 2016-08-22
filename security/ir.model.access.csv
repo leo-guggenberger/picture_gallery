@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+galleries_all,Galleries,model_picture_gallery_galleries,,1,0,0,0
+galleries,Galleries,model_picture_gallery_galleries,picture_gallery.group_photographer,1,1,1,1
+pictures_all,Picture,model_picture_gallery_pictures,,1,0,0,0
+pictures,Gictures,model_picture_gallery_pictures,picture_gallery.group_photographer,1,1,1,1

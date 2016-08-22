@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="module_category_picture_gallery" model="ir.module.category">
+            <field name="name">Picture Gallery</field>
+            <field name="sequence">7</field>
+        </record>
+        
+        <record id="picture_gallery.group_photographer" model="res.groups">
+            <field name="name">Photographer</field>
+            <field name="category_id" ref="module_category_picture_gallery"/>
+        </record>
+    </data>
+</openerp>
