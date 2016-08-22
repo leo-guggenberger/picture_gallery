@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        
+        <!-- Galleries View -->
+        <record id="galleries_action" model="ir.actions.act_window">
+            <field name="name">Galleries</field>
+            <field name="res_model">picture_gallery.galleries</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Click here to create a new picture gallery.</p>
+            </field>
+        </record>
+        <record id="galleries_tree_view" model="ir.ui.view">
+            <field name="name">galleries.tree.view</field>
+            <field name="view_type">tree</field>
+            <field name="model">picture_gallery.galleries</field>
+            <field name="arch" type="xml">
+                <tree string="Galleries"  default_order="date desc">
+                    <field name="name" />
+                    <field name="date" />
+                    <field name="photographer" />
+                    <field name="picture_number" />
+                </tree>
+            </field>
+        </record>
+        <record id="galleries_form_view" model="ir.ui.view">
+            <field name="name">galleries.form.view</field>
+            <field name="view_type">form</field>
+            <field name="model">picture_gallery.galleries</field>
+            <field name="arch" type="xml">
+                <form string="Galleries">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                        </div>
+                        <div name="button_box" class="oe_right" position="inside">
+                            <button class="oe_inline oe_stat_button" name="upload_pictures" widget="upload_pictures" type="object" icon="fa-cloud-upload" string="Upload Pictures" />
+                        </div>
+                        <group>
+                            <field name="date" />
+                            <field name="description" />
+                            <field name="photographer" />
+                            <field name="picture_number" />
+                        </group>
+                        <notebook>
+                            <page string="Pictures">
+                                <field name="picture_ids" widget="one2many_list">
+                                    <tree string="Pictures" editable="bottom" default_order="picture_id asc">
+                                        <field name="image" widget="image" height="64" filename="name"/>
+                                        <field name="name" />
+                                        <field name="image_alt" />
+                                        <field name="image_resolution" />
+                                        <field name="visits" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <!-- Menü Picture Gallery -->
+        <menuitem id="gallery_menu" name="Picture Gallery" parent="knowledge.menu_document" />
+        <menuitem id="gallery_master_menu" name="Galleries" parent="gallery_menu" action="galleries_action" />
+        
+    </data>
+</openerp>

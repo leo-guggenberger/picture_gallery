@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report
+        id="picture_gallery_report"
+        string="Picture gallery report"
+        model="picture_gallery.galleries"
+        report_type="qweb-html"
+        file="picture_gallery.report_picture_gallery"
+        name="picture_gallery.report_picture_gallery"
+        />
+        
+        <template id="report_picture_gallery">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="report.external_layout">
+                        <div class="page">
+                            <h2>Picture Gallery <span t-field="o.name"/></h2>
+                            <p>Date: <span t-field="o.date"/></p>
+                            <p>Description: <span t-field="o.description"/></p>
+                            <p>Photographer: <span t-field="o.photographer"/></p>
+                            <p>Number of pictures: <span t-field="o.picture_number"/></p>
+                            
+                            <t t-foreach="o.picture_ids" t-as="p">
+                                <div class="oe_structure"/>
+                                <div class="row">
+                                    <table>
+                                        <tr>
+                                            <td style="width:33% !important;">
+                                                Full size:<br/>
+                                                <span t-field="p.image" t-field-options="{&quot;widget&quot;: &quot;image&quot;}"/>
+                                            </td>
+                                            <td style="width:33% !important;">
+                                                128x128:<br/>
+                                                <span t-field="p.image_medium" t-field-options="{&quot;widget&quot;: &quot;image&quot;}"/>
+                                            </td>
+                                            <td style="width:33% !important;">
+                                                64x64:<br/>
+                                                <span t-field="p.image_small" t-field-options="{&quot;widget&quot;: &quot;image&quot;}"/>
+                                            </td>
+                                            <td style="width:33% !important;">
+                                                Name:<br/>
+                                                <span t-field="p.name"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="oe_structure"/>
+                            </t>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

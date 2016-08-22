@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <!-- Website Menu Entry -->
+        <record id="picture_gallery_menu_link" model="website.menu">
+            <field name="name">Picture Gallery</field>
+            <field name="url">/gallery</field>
+            <field name="parent_id" ref="website.main_menu" />
+            <field name="sequence" type="int">4</field>
+        </record>
+        
+        <!-- Layout add nav and footer -->
+        <template id="header_footer_custom" inherit_id="website.footer_default" name="Footer Picture Gallery Link">
+            <xpath expr="//ul[@id='products']" position="inside">
+                <li><a t-attf-href="/gallery">Picture Gallery</a></li>
+            </xpath>
+        </template>
+        
+        <!-- Picture Gallery Main Page -->
+        <template name="Picture gallery" id="website.galleries" page="True">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="oe_structure">
+                        <section class="mb0">
+                            <div class="container">
+                                <div class="col-md-12 mb32 mt16 text-center">
+                                    <h1>Picture Gallery</h1>
+                                    <h3 class="text-muted">Pictures from <span t-field="res_company.name">Company name</span></h3>
+                                </div>
+                                <t t-call="website.pager" >
+                                    <t t-set="classname">pull-right</t>
+                                </t>
+                            </div>
+                        </section>
+                    </div>
+                    
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2" t-ignore="True" id="main_column">
+                                
+                                <div t-if="not galleries" class="container mb64">
+                                    <p class="css_editable_hidden">
+                                        <h1>No picture galleries post yet.</h1>
+                                    </p>
+                                    <p groups="base.group_document_user">
+                                        Create a picture gallery in knowledge menu to see it here.
+                                    </p>
+                                </div>
+                                
+                                <div t-foreach="galleries" t-as="g" class="mb32">
+                                    <a t-attf-href="/gallery/post/#{ slug(g) }">
+                                        <h2 t-field="g.name" class="mb4"/>
+                                    </a>
+                                    
+                                    <div class="text-muted">
+                                        <h4 t-field="g.description" class="mb4 mt4"/>
+                                        <div name='galleries_data' class='mb0'>
+                                            <span t-field="g.date" t-field-options='{"format": "d MMMM y"}' />
+                                            &#5760; <span t-field="g.photographer" />
+                                            &#5760; <span t-field="g.picture_number" /> Pictures
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+        
+        <!-- Option:Right Column for extra info -->
+        <template id="index_right" name="Right Column"
+            inherit_id="website.galleries" active="False" customize_show="True">
+            <xpath expr="//div[@id='main_column']" position="attributes">
+                <attribute name="class">col-sm-8</attribute>
+            </xpath>
+            <xpath expr="//div[@id='main_column']" position="after">
+                <div class="col-lg-3 col-lg-offset-1 col-sm-4" id="gallery_right_column"/>
+            </xpath>
+        </template>
+        
+        <!-- Option:Right Column: archives -->
+        <template id="opt_gallery_rc_history" name="Archives"
+            inherit_id="index_right" active="False" customize_show="True">
+            <xpath expr="//div[@id='gallery_right_column']" position="inside">
+                <section class="mt32">
+                    <h4>Archives</h4>
+                    <ul class="nav nav-pills nav-stacked">
+                        <t t-foreach="nav_list" t-as="months">
+                            <t t-if="months['date_begin'] == date">
+                                <li class="active">
+                                    <a t-ignore="True" t-attf-href="#{gallery_url(date_begin=False, date_end=False)}"><t t-esc="months['date']"/><span class="pull-right badge" t-esc="months['date_count']"/></a>
+                                </li>
+                            </t>
+                            <t t-if="months['date_begin'] != date">
+                                <li>
+                                    <a t-ignore="True" t-attf-href="#{gallery_url(date_begin=months['date_begin'], date_end=months['date_end'])}"><t t-esc="months['date']"/><span class="pull-right badge" t-esc="months['date_count']"/></a>
+                                </li>
+                            </t>
+                        </t>
+                    </ul>
+                </section>
+            </xpath>
+        </template>
+        
+        <!-- Picture Gallery Post -->
+        <template name="Picture gallery post" id="website.gallery_post" page="True">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="oe_structure">
+                        <section class="mb0">
+                            <div class="container">
+                                <div class="col-md-12 mb32 mt16 text-center">
+                                    <h1 t-field="gallery_post.name" />
+                                    <h4 t_field="gallery_post.description" />
+                                    <div class="text-muted">
+                                        <h4 t-field="gallery_post.description" class="mb4 mt4"/>
+                                        <div name='galleries_data' class='mb0'>
+                                            <span t-field="gallery_post.date" t-field-options='{"format": "d MMMM y"}' />
+                                            &#5760; <span t-field="gallery_post.photographer" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb4 mt4 text-center">
+                                    <h4 t_field="gallery_post.description" />
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2" t-ignore="True" id="main_column">
+                                
+                                <div t-if="not pictures" class="container mb64">
+                                    <p class="css_editable_hidden">
+                                        <h1>No picture for this gallery post yet.</h1>
+                                    </p>
+                                    <p groups="base.group_document_user">
+                                        Upload pictures for this gallery in knowledge menu to see them here.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="container">
+                        <div class="row">
+                            <center>
+                                
+                                <!-- Fotorama 4.6.4, -->
+                                <script src="/picture_gallery/static/src/js/jquery-1.12.0.min.js"></script>
+                                <link  href="/picture_gallery/static/src/css/fotorama-4.6.4.css" rel="stylesheet"></link>
+								<script>
+									blockFotoramaData = true;
+								</script>
+                                <script src="/picture_gallery/static/src/js/fotorama-4.6.4.js"></script>
+                                
+                                <div class="fotorama" id="fotorama"
+                                    data-width="100%"
+                                    data-height="100%"
+                                    data-fit="contain"
+                                    data-autoplay="6000"
+                                    data-keyboard="true"
+                                    data-allowfullscreen="native">
+                                    
+                                    <t t-foreach="pictures" t-as="p">
+                                        <div>
+                                            <span t-field="p.image" t-field-options="{&quot;widget&quot;: &quot;image&quot;}"/>
+                                        </div>
+                                    </t>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+        
+    </data>
+</openerp>
