@@ -13,7 +13,7 @@ Bildergalerie mit folgenden Features:
 * EXIF-Daten (wie Kamerahersteller, Kameramodell usw.) werden ausgelesen
 * Archive im rechten Block der Bildergalerieübersicht ein-/ausblendbar
 * Anzeige der Bilder im Slider - als Slider wird Fotorama 4.6.4 (http://fotorama.io) unter MIT Lizent (http://fotorama.io/license/) verwendet
-* Zähler wie oft ein Bild angezeigt wurde
+* Counter wie oft ein Bild angezeigt wurde
 * Option Fullscreenmodus im Sliders
 * Speicheroptimierter Upload der Bilder - nicht mehr benötigter RAM wird automatisch wieder freigegeben
         """,
