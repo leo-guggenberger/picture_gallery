@@ -21,6 +21,7 @@ Bildergalerie mit folgenden Features:
     'category': 'Generic Modules/Others',
     'depends': ['website', 'document'],
     'data': ['data/garbage_collector.xml',
+             'views/picture_gallery.xml',
              'views/picture_gallery_templates.xml',
              'views/picture_gallery_views.xml',
              'views/picture_gallery_report.xml',

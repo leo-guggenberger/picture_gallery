@@ -9,6 +9,7 @@ from openerp.addons.web import http
 from openerp.addons.web.http import request
 from openerp.addons.website.models.website import slug, unslug
 from openerp.osv.orm import browse_record
+from openerp import SUPERUSER_ID
 
 class QueryURL(object):
     def __init__(self, path='', path_args=None, **args):
@@ -53,6 +54,13 @@ class PictureGallery(http.Controller):
             group['date_begin'] = '%s' % datetime.date.strftime(begin_date, tools.DEFAULT_SERVER_DATE_FORMAT)
             group['date_end'] = '%s' % datetime.date.strftime(end_date, tools.DEFAULT_SERVER_DATE_FORMAT)
         return groups
+
+    @http.route(['/gallery/displayed'], type='json', auth="public", website=True)
+    def displayed(self, image_id, **post):
+        picture_obj = request.registry.get('picture_gallery.pictures')
+        picture = picture_obj.browse(request.cr, SUPERUSER_ID, image_id)
+        picture.write({'visits': picture.visits+1})
+        return True
     
     @http.route([
         '/gallery',
