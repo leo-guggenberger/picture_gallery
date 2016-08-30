@@ -1,0 +1,15 @@
+<openerp>
+    <data>
+        <template id="picture_gallery" inherit_id="website.assets_frontend" name="Picture Gallery Headers">
+            <xpath expr="/t" position="inside">
+                <!-- Fotorama 4.6.4, -->
+                <script src="/picture_gallery/static/src/js/jquery-1.12.0.min.js"></script>
+                <link  href="/picture_gallery/static/src/css/fotorama-4.6.4.css" rel="stylesheet"></link>
+                <script>
+                    blockFotoramaData = true;
+                </script>
+                <script src="/picture_gallery/static/src/js/fotorama-4.6.4.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>
