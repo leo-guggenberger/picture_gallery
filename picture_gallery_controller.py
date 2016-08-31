@@ -113,11 +113,3 @@ class PictureGallery(http.Controller):
         }
         response = request.website.render("website.gallery_post", values)
         return response
-        
-    def update_picture_visits(self, gallery_id, name):
-        picture_obj = request.registry['picture_gallery.pictures']
-        picture = picture_obj.search(cr, uid, [('gallery_id', '=', gallery_id), ('name', '=', name)], context=context)
-        picture_obj.write(cr, SUPERUSER_ID, [picture.id], { 
-                 'visits': picture.visits+1, 
-             },context=None) 
-        return response
