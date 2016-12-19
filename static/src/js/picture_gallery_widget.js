@@ -9,6 +9,9 @@ openerp.picture_gallery = function (instance,local)
             return sup;
         },
         load_input: function(){
+            if (this.view.get('actual_mode') == 'view'){
+                return;
+            }
             var self = this;
             if (!this.view.datarecord.id){
                 $(".oe_form_button_save").click();
@@ -22,7 +25,7 @@ openerp.picture_gallery = function (instance,local)
                 var rec_id = this.view.datarecord.id;
             }
             if ( $("#picture_upload").length == 0 ){
-                var input = "<input type='file' id='picture_upload' style='display:none;' multiple/>";
+                var input = "<input type='file' id='picture_upload' style='display:none;' accept='image/*'  multiple/>";
                 this.$el.append(input);
             }
             $("#picture_upload").on('change',function(){ self.upload_files() });
@@ -48,7 +51,11 @@ openerp.picture_gallery = function (instance,local)
                                 self.view.fields.picture_ids.set_value(data);
                             });
                         }
-                    });
+                    })
+                    .catch(function(error){
+                         console.log(error);
+                         alert(error);
+                    })
                 }
             }
         },
@@ -58,6 +65,10 @@ openerp.picture_gallery = function (instance,local)
                 var reader = new FileReader();
                 var data = {};
                 reader.addEventListener("loadend", function(){
+                    if (reader.result.split(',')[0].indexOf('image')==-1){
+                        console.log("One of the files you have selected is not an image");
+                        reject("One of the files you have selected is not an image");
+                    }
                     data['gallery_id'] = self.view.datarecord.id;
                     data['name'] = file.name;
                     data['image'] = reader.result.split(',')[1];
