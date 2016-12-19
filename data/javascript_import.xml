@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <template id="assets_backend_picture_gallery" name="assets_backend_picture_gallery" inherit_id="web.assets_backend">
+            <xpath expr="script[last()]" position="after">
+                <script type="text/javascript" src="/picture_gallery/static/src/js/picture_gallery_widget.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>

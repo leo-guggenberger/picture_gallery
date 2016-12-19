@@ -2,7 +2,10 @@
 # -*- coding: utf-8 -*-
 
 import datetime
+import time
+import json
 import werkzeug
+import logging
 
 from openerp import tools
 from openerp.addons.web import http
@@ -10,6 +13,8 @@ from openerp.addons.web.http import request
 from openerp.addons.website.models.website import slug, unslug
 from openerp.osv.orm import browse_record
 from openerp import SUPERUSER_ID
+
+_logger = logging.getLogger(__name__)
 
 class QueryURL(object):
     def __init__(self, path='', path_args=None, **args):

@@ -39,7 +39,9 @@
                             </h1>
                         </div>
                         <div name="button_box" class="oe_right" position="inside">
-                            <button class="oe_inline oe_stat_button" name="upload_pictures" widget="upload_pictures" type="object" icon="fa-cloud-upload" string="Upload Pictures" />
+                            <widget type="upload_pictures" class="oe_picture_gallery">
+                            <button class="oe_inline oe_stat_button oe_picture_gallery" name="upload_pictures" type="object" icon="fa-cloud-upload" string="Upload Pictures" ><div class="stat_button_icon fa fa-cloud-upload fa-fw"></div><div>Upload Images</div></button>
+                            </widget>
                         </div>
                         <group>
                             <field name="date" />

@@ -29,7 +29,7 @@ class pictures(models.Model):
     _name = 'picture_gallery.pictures'
     _descrition = 'Pictures'
     
-    gallery_id = fields.Integer('Gallery ID')
+    gallery_id = fields.Many2one('picture_gallery.galleries',ondelete='cascade',string='Gallery ID')
     name = fields.Char('Filename')
     image = fields.Binary('Image')
     image_big = fields.Binary('Image Big', compute='_compute_image_picture', store=True)
