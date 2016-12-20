@@ -5,6 +5,8 @@ openerp.picture_gallery = function (instance,local)
             "click .oe_picture_gallery": "load_input",
         },
         start: function() {
+            console.log(instance);
+            console.log(this);
             var sup = this._super();
             return sup;
         },
@@ -14,24 +16,22 @@ openerp.picture_gallery = function (instance,local)
             }
             var self = this;
             if (!this.view.datarecord.id){
-                $(".oe_form_button_save").click();
-                var rec_id = false;
-                var rec_id = this.view.datarecord.id;
-                if (!rec_id){
-                    setTimeout(function(){ self.load_input(); }, 500);
-                    return;
-                }
+                var e = new Event('save');
+                this.view.on_button_save(e)
             } else {
                 var rec_id = this.view.datarecord.id;
             }
             if ( $("#picture_upload").length == 0 ){
                 var html = "<input type='file' id='picture_upload' style='display:none;' accept='image/*'  multiple/>";
                 this.$el.append(html);
+                $("#picture_upload").on('change',function(){ self.upload_files() });
             }
-            $("#picture_upload").on('change',function(){ self.upload_files() });
             $("#picture_upload").click();
         },
         upload_files: function(){
+            if (this.view.get('actual_mode') == 'view'){
+                $(".oe_form_button_edit").click();
+            }
             instance.web.blockUI()
             var input = $("#picture_upload")[0];
             var self = this;
