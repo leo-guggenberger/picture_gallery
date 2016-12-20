@@ -25,13 +25,14 @@ openerp.picture_gallery = function (instance,local)
                 var rec_id = this.view.datarecord.id;
             }
             if ( $("#picture_upload").length == 0 ){
-                var input = "<input type='file' id='picture_upload' style='display:none;' accept='image/*'  multiple/>";
-                this.$el.append(input);
+                var html = "<input type='file' id='picture_upload' style='display:none;' accept='image/*'  multiple/>";
+                this.$el.append(html);
             }
             $("#picture_upload").on('change',function(){ self.upload_files() });
             $("#picture_upload").click();
         },
         upload_files: function(){
+            instance.web.blockUI()
             var input = $("#picture_upload")[0];
             var self = this;
             if (input.files.length > 0){
@@ -49,10 +50,12 @@ openerp.picture_gallery = function (instance,local)
                                     data.push([4,picture_ids[x]['id'],false]);
                                 }
                                 self.view.fields.picture_ids.set_value(data);
+                                instance.web.unblockUI()
                             });
                         }
                     })
                     .catch(function(error){
+                         instance.web.unblockUI()
                          console.log(error);
                          alert(error);
                     })
