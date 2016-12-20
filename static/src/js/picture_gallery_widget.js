@@ -1,5 +1,7 @@
 openerp.picture_gallery = function (instance,local)
 {   
+    var _t = instance.web._t,
+    _lt = instance.web._lt;
     local.upload_pictures = instance.web.form.FormWidget.extend({
         events: {
             "click .oe_picture_gallery": "load_input",
@@ -56,8 +58,7 @@ openerp.picture_gallery = function (instance,local)
                     })
                     .catch(function(error){
                          instance.web.unblockUI()
-                         console.log(error);
-                         alert(error);
+                         alert(_t(error));
                     })
                 }
             }
@@ -69,7 +70,6 @@ openerp.picture_gallery = function (instance,local)
                 var data = {};
                 reader.addEventListener("loadend", function(){
                     if (reader.result.split(',')[0].indexOf('image')==-1){
-                        console.log("One of the files you have selected is not an image");
                         reject("One of the files you have selected is not an image");
                     }
                     data['gallery_id'] = self.view.datarecord.id;
