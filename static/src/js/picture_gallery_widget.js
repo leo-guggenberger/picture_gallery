@@ -7,8 +7,6 @@ openerp.picture_gallery = function (instance,local)
             "click .oe_picture_gallery": "load_input",
         },
         start: function() {
-            console.log(instance);
-            console.log(this);
             var sup = this._super();
             return sup;
         },
@@ -57,6 +55,7 @@ openerp.picture_gallery = function (instance,local)
                         }
                     })
                     .catch(function(error){
+                         console.log("ERROR");
                          instance.web.unblockUI()
                          alert(_t(error));
                     })
@@ -92,6 +91,9 @@ openerp.picture_gallery = function (instance,local)
                                                   'id': 1}),
                             contentType: "application/json; charset=utf-8",
                             success: function(data){
+                                if (data.hasOwnProperty('error')){
+                                    reject(data.error.data.message);
+                                }
                                 data['index'] = index;
                                 resolve(data);
                             },

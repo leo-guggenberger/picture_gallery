@@ -2,10 +2,14 @@
 # -*- coding: utf-8 -*-
 
 from openerp import models, fields, api, tools
+from openerp.exceptions import ValidationError
 from datetime import datetime
+import logging
 from StringIO import StringIO
 import random
 import PIL
+
+_logger = logging.getLogger(__name__)
 
 # Table galleries
 class galleries(models.Model):
@@ -46,6 +50,7 @@ class pictures(models.Model):
     @api.one
     @api.depends('image')
     def _compute_image_picture(self):
+        self._check_image(self.image)
         image_content = self.image
         
         # Image Big
@@ -95,4 +100,22 @@ class pictures(models.Model):
         age = datetime.now() - datetime.strptime(self.create_date, tools.DEFAULT_SERVER_DATETIME_FORMAT)
         self.ranking = self.visits * (0.5+random.random()) / max(3, age.days)
 
+    def _check_image(self,image):
+        image_content = image.decode('base64') 
+        try:
+            image = PIL.Image.open(StringIO(image_content))
+        except IOError:
+            raise ValidationError("The file you uploaded was not an image!")
+        return PIL.Image.isImageType(image) 
 
+    @api.model
+    @api.returns('self', lambda rec: rec.id)
+    def create(self, vals):
+        if vals.get('image'): self._check_image(vals.get('image'))
+        return super(pictures, self).create(vals)
+    
+
+    @api.multi
+    def write(self, vals):
+        if vals.get('image'): self._check_image(vals.get('image'))
+        return super(pictures, self).write(vals)
