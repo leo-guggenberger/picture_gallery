@@ -68,6 +68,8 @@ class pictures(models.Model):
     @api.depends('image')
     def _compute_image_details(self):
         if self.image:
+            self._check_image(self.image)
+            
             image_content = self.image.decode('base64')
             
             # File size
