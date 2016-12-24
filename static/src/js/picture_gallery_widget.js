@@ -43,7 +43,7 @@ openerp.picture_gallery = function (instance,local)
                         processed_files++;
                         if (processed_files = input.files.length){
                             var pg = new instance.web.Model('picture_gallery.pictures')
-                            pg.query(['picture_ids'])
+                            pg.query(['id','gallery_id'])
                             .filter([['gallery_id','=', self.view.datarecord.id]])
                             .all()
                             .then(function(picture_ids){ 
