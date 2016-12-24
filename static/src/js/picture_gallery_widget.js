@@ -37,9 +37,11 @@ openerp.picture_gallery = function (instance,local)
             var self = this;
             if (input.files.length > 0){
                 for (var i=0; i<input.files.length; i++){
-                    self.upload_file(input.files[i],i)
+                    var processed_files = 0;
+                    self.upload_file(input.files[i])
                     .then(function(data){
-                        if (data['index'] == input.files.length -1){
+                        processed_files++;
+                        if (processed_files = input.files.length){
                             var pg = new instance.web.Model('picture_gallery.pictures')
                             pg.query(['picture_ids'])
                             .filter([['gallery_id','=', self.view.datarecord.id]])
@@ -50,19 +52,24 @@ openerp.picture_gallery = function (instance,local)
                                     data.push([4,picture_ids[x]['id'],false]);
                                 }
                                 self.view.fields.picture_ids.set_value(data);
-                                instance.web.unblockUI()
+                            })
+                            .then(function(){
+                                instance.web.unblockUI();
                             });
                         }
                     })
                     .catch(function(error){
+                         processed_files++
                          console.log("ERROR");
-                         instance.web.unblockUI()
+                         if (processed_files = input.files.length){
+                             instance.web.unblockUI();
+                         }
                          alert(_t(error));
                     })
                 }
             }
         },
-        upload_file: function(file,index){
+        upload_file: function(file){
             var self = this;
             return new Promise(function(resolve,reject){
                 var reader = new FileReader();
@@ -94,11 +101,10 @@ openerp.picture_gallery = function (instance,local)
                                 if (data.hasOwnProperty('error')){
                                     reject(data.error.data.message);
                                 }
-                                data['index'] = index;
                                 resolve(data);
                             },
                             failure: function(data){
-                                reject(index);
+                                reject(data);
                             }
                     });                    
                 });
