@@ -1112,8 +1112,13 @@ fotoramaVersion = "4.6.4", function (a, b, c, d, e) {
         }
 
         function cd(a) {
+<<<<<<< HEAD
             var image_id = Dd[Xc].find("span").attr("data-oe-id");
             RegisterDisplay(image_id);
+=======
+            //var image_id = Dd[Xc].find("span").attr("data-oe-id");
+            //RegisterDisplay(image_id);
+>>>>>>> count_picture_visits
             Fd = Gd = Je;
             var b = Dd[Xc];
             b && (_c(Xc), Qe[Xc].push(b.addClass(Wb)), a || ie.show.onEnd(!0), v(se, 0, !0), bd(Xc), tc(Ed), $(), bb())
@@ -1281,6 +1286,11 @@ fotoramaVersion = "4.6.4", function (a, b, c, d, e) {
             }), ce = !0;
             var j = ie.show.onEnd = function (b) {
                 if (!j.ok) {
+<<<<<<< HEAD
+=======
+                    var image_id = Dd[Xc].find("span").attr("data-oe-id");
+                    RegisterDisplay(image_id);
+>>>>>>> count_picture_visits
                     if (j.ok = !0, b || cd(!0), i || fd("showend", {user: a.user}), !b && Wd && Wd !== e.transition)return ie.setOptions({transition: Wd}), void(Wd = !1);
                     Sb(), Pb(Ed, "stage"), rd("go", !1), Hc(), od(), id(), jd()
                 }
