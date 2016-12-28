@@ -2,13 +2,14 @@
 # -*- coding: utf-8 -*-
 {
     'name': "Bildergalerie",
-    'version': '1.02',
+    'version': '1.03',
     'description': """
 Bildergalerie
 =============
         
 Bildergalerie mit folgenden Features:
 -------------------------------------
+* Gleichzeitiger Upload von mehreren Bildern
 * Ablage der Bilder in Datenbank
 * EXIF-Daten (wie Kamerahersteller, Kameramodell usw.) werden ausgelesen
 * Archive im rechten Block der Bildergalerieübersicht ein-/ausblendbar
