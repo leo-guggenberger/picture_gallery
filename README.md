@@ -1,4 +1,3 @@
-# picture_gallery
 Website Picture Gallery for Odoo
 =============
         
