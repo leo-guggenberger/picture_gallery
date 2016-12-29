@@ -21,6 +21,8 @@ Bildergalerie mit folgenden Features:
     'author': 'Leo',
     'website': 'http://www.leo-guggenberger.at',
     'category': 'Generic Modules/Others',
+    'price': 49.90,
+    'currency': 'EUR',
     'depends': ['website', 'document'],
     'data': ['data/garbage_collector.xml',
              'data/javascript_import.xml',
