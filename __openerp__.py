@@ -14,6 +14,8 @@ Picture Gallery administration with following features:
 * Automatical cull of EXIF-data (such as camera manufacturer, camera model, etc.)
 * Counter how often a picture was shown
 * Memory-optimized upload of the images - unused memory is automatically released again
+* Language support: English, German
+* Odoo version support: v8
 
 Picture Gallery presentation on website with following features:
 -------------------------------------
@@ -21,7 +23,6 @@ Picture Gallery presentation on website with following features:
 * Show pictures as slider on the website
   - Slider Fotorama 4.6.4 (http://fotorama.io) with MIT license (http://fotorama.io/license/) is used
 * Option to show slider in fullscreen mode
-* Languagesupport: English, German
         """,
     'author': 'Leo',
     'website': 'http://www.leo-guggenberger.at',
