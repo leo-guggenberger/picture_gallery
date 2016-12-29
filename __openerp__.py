@@ -17,6 +17,7 @@ Bildergalerie mit folgenden Features:
 * Counter wie oft ein Bild angezeigt wurde
 * Option Fullscreenmodus im Sliders
 * Speicheroptimierter Upload der Bilder - nicht mehr benötigter RAM wird automatisch wieder freigegeben
+* Verfügbar in Englisch und Deutscher Sprache
         """,
     'author': 'Leo',
     'website': 'http://www.leo-guggenberger.at',
