@@ -1,23 +1,27 @@
 # __openerp__.py
 # -*- coding: utf-8 -*-
 {
-    'name': "Bildergalerie",
+    'name': "Website Picture Gallery",
     'version': '1.03',
     'description': """
-Bildergalerie
+Website Picture Gallery
 =============
         
-Bildergalerie mit folgenden Features:
+Picture Gallery administration with following features:
 -------------------------------------
-* Gleichzeitiger Upload von mehreren Bildern
-* Ablage der Bilder in Datenbank
-* EXIF-Daten (wie Kamerahersteller, Kameramodell usw.) werden ausgelesen
-* Archive im rechten Block der Bildergalerieübersicht ein-/ausblendbar
-* Anzeige der Bilder im Slider - als Slider wird Fotorama 4.6.4 (http://fotorama.io) unter MIT Lizent (http://fotorama.io/license/) verwendet
-* Counter wie oft ein Bild angezeigt wurde
-* Option Fullscreenmodus im Sliders
-* Speicheroptimierter Upload der Bilder - nicht mehr benötigter RAM wird automatisch wieder freigegeben
-* Verfügbar in Englisch und Deutscher Sprache
+* Multiple image upload
+* Storage of images in database
+* Automatical cull of EXIF-data (such as camera manufacturer, camera model, etc.)
+* Counter how often a picture was shown
+* Memory-optimized upload of the images - unused memory is automatically released again
+
+Picture Gallery presentation on website with following features:
+-------------------------------------
+* Display / hide archives in the right block of the image gallery overview
+* Show pictures as slider on the website
+  - Slider Fotorama 4.6.4 (http://fotorama.io) with MIT license (http://fotorama.io/license/) is used
+* Option to show slider in fullscreen mode
+* Languagesupport: English, German
         """,
     'author': 'Leo',
     'website': 'http://www.leo-guggenberger.at',
