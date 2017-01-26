@@ -1,4 +1,4 @@
-Website Picture Gallery for Odoo v8.0
+Website Picture Gallery for Odoo master
 =============
         
 Picture Gallery administration with following features:
