@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': "Website Picture Gallery",
-    'version': '1.03',
+    'version': '8.03',
     'description': """
 Website Picture Gallery
 =============
