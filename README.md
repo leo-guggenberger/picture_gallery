@@ -1,6 +1,8 @@
-# Modules for Odoo
+Website Picture Gallery for Odoo
 =============
-
-Following modules are in this repository:
+        
+Available versions
 -------------------------------------
-* picture_gallery - Website Picture Gallery for Odoo
+addon | version | summary
+--- | --- | ---
+[picture_gallery](picture_gallery/) | 8.03 | Website Picture Gallery for Odoo v8.0
