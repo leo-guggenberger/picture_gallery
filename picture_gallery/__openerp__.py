@@ -30,7 +30,7 @@ Picture Gallery presentation on website with following features:
     'price': 49.90,
     'currency': 'EUR',
     'summary': 'Picture Gallery to present your photos on the odoo website',
-    'images': ['static/description/main_screenshot.png'],
+    'images': ['static/description/landscape05.png'],
     'depends': ['website', 'document'],
     'data': ['data/garbage_collector.xml',
              'data/javascript_import.xml',
