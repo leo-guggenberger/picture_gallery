@@ -29,6 +29,7 @@ Picture Gallery presentation on website with following features:
     'category': 'Generic Modules/Others',
     'price': 49.90,
     'currency': 'EUR',
+    'images': ['static/description/main_screenshot.png'],
     'depends': ['website', 'document'],
     'data': ['data/garbage_collector.xml',
              'data/javascript_import.xml',
