@@ -26,7 +26,7 @@ Picture Gallery presentation on website with following features:
         """,
     'author': 'Leo',
     'website': 'http://www.leo-guggenberger.at',
-    'category': 'Generic Modules/Others',
+    'category': 'Website',
     'price': 49.90,
     'currency': 'EUR',
     'summary': 'Picture Gallery to present your photos on the odoo website',
